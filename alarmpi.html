@@ -1,0 +1,145 @@
+<head>
+  <title>Alarm Pi</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+		<ul class="nav navbar-nav">
+			<li>
+				<a class="navbar-brand" href="#">Alarm Pi</a>
+			</li>
+			<li class="{{#if curTab "alarms"}}active{{/if}} tab" data-tab-id="alarms">
+				<a href="#">Alarms</a>
+			</li>
+			<li class="{{#if curTab "playlists"}}active{{/if}} tab" data-tab-id="playlists">
+					<a href="#">Playlists</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="container">
+		{{#if curTab "alarms"}}
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<form class="new-alarm">
+						<button class="btn btn-success" type="submit">Add New Alarm</button>
+					</form>
+				</div>
+			</div>
+			
+			<hr />
+
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					{{#each alarms}}
+						{{>alarm}}
+					{{/each}}
+				</div>
+			</div>
+		{{/if}}
+		{{#if curTab "playlists"}}
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<form class="new-playlist">
+						<button class="btn btn-success" type="submit">Add New Playlist</button>
+					</form>
+				</div>
+			</div>
+
+			<hr />
+
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					{{#each playlists}}
+						{{>playlist}}
+					{{/each}}
+				</div>
+			</div>
+		{{/if}}
+	</div>
+</body>
+
+<template name="alarm">
+	<div class="well">
+		<form class="edit-alarm form-inline">
+			<div class="formgroup row">
+				<div class="col-md-4">
+					<label for="edit-time-{{_id}}">Time</label>
+					<input id="edit-time-{{_id}}" type="text" class="form-control" name="time" value="{{timeFormat time}}" />
+				</div>
+				<div class="col-md-6">
+					<label for="edit-playlist-{{_id}}">Playlist</label>
+					<select class="form-control" id="edit-playlist-{{_id}}" name="playlist">
+						{{#each playlists}}
+							{{#if eq _id ../playlist}}
+								<option value="{{_id}}" selected>{{name}}</option>
+							{{else}}
+								<option value="{{_id}}">{{name}}</option>
+							{{/if}}
+						{{/each}}
+					</select>
+				</div>
+			</div>
+			<br />
+			<div class="formgroup row">
+				<div class="col-md-12">
+					<input type="checkbox" id="edit-day-sunday-{{_id}}" name="day0" checked="{{nth days 0}}" />
+					<label for="edit-day-sunday-{{_id}}">Sunday</label>
+					<input type="checkbox" id="edit-day-monday-{{_id}}" name="day1" checked="{{nth days 1}}" />
+					<label for="edit-day-monday-{{_id}}">Monday</label>
+					<input type="checkbox" id="edit-day-tuesday-{{_id}}" name="day2" checked="{{nth days 2}}" />
+					<label for="edit-day-tuesday-{{_id}}">Tuesday</label>
+					<input type="checkbox" id="edit-day-wednesday-{{_id}}" name="day3" checked="{{nth days 3}}" />
+					<label for="edit-day-wednesday-{{_id}}">Wednesday</label>
+					<input type="checkbox" id="edit-day-thursday-{{_id}}" name="day4" checked="{{nth days 4}}" />
+					<label for="edit-day-thursday-{{_id}}">Thursday</label>
+					<input type="checkbox" id="edit-day-friday-{{_id}}" name="day5" checked="{{nth days 5}}" />
+					<label for="edit-day-friday-{{_id}}">Friday</label>
+					<input type="checkbox" id="edit-day-saturday-{{_id}}" name="day6" checked="{{nth days 6}}" />
+					<label for="edit-day-saturday-{{_id}}">Saturday</label>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-primary">Update Alarm</button>
+					<button class="btn btn-danger delete-alarm">Delete Alarm</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
+
+<template name="playlist">
+	<div class="well">
+		<form class="edit-playlist form-inline">
+			<div class="formgroup row">
+				<div class="col-md-12">
+					<label for="edit-playlist-name-{{_id}}">Name</label>
+					<input type="text" value="{{name}}" name="name" id="edit-playlist-name-{{_id}}" />
+				</div>
+			</div>
+			<br />
+			<div class="formgroup row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="edit-playlist-content-{{_id}}">Content (comma separated list of youtube ids, you can put descriptions for humans in parens)</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<textarea name="content" value="{{content}}" class="form-control" rows="3"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-primary">Update Playlist</button>
+					<button class="btn btn-danger delete-playlist">Delete Playlist</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
