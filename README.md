@@ -1,6 +1,6 @@
 #Alarm Pi
 
-I don't have a smartphone for the next few weeks, but I need an alarm clock that wakes me up with music. Therefore, I needed to use my raspberry pi. This meteor app allows you to configure playlists of songs from youtube to play at different times.
+I don't have a smartphone for the next few weeks, but because I can sleep through alarms that don't change (ie. aren't music), I need some way of getting a musical alarm. Obviously, the simplest solution was to write my own for the raspberry pi. This is a meteor app custom-made for that very purpose. It provides an interface to set times for alarms, make them recurring on certain days, and create playlists of songs from youtube to play as the alarm sound.
 
 # Todo
 
