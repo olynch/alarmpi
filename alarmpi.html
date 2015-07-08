@@ -12,9 +12,11 @@
 				<a href="#">Alarms</a>
 			</li>
 			<li class="{{#if curTab "playlists"}}active{{/if}} tab" data-tab-id="playlists">
-					<a href="#">Playlists</a>
+				<a href="#">Playlists</a>
 			</li>
 		</ul>
+			<button class="btn btn-danger navbar-btn stop-music">STOP THE MUSIC</button>
+			<button class="btn btn-success navbar-btn skip-song">SKIP SONG</button>
 	</nav>
 	<div class="container">
 		{{#if curTab "alarms"}}
@@ -52,6 +54,12 @@
 					{{#each playlists}}
 						{{>playlist}}
 					{{/each}}
+				</div>
+			</div>
+		{{/if}}
+		{{#if curTab "controls"}}
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
 				</div>
 			</div>
 		{{/if}}
@@ -136,6 +144,7 @@
 			<br />
 			<div class="row">
 				<div class="col-md-12">
+					<button class="btn btn-success play-playlist">Play Playlist</button>
 					<button type="submit" class="btn btn-primary">Update Playlist</button>
 					<button class="btn btn-danger delete-playlist">Delete Playlist</button>
 				</div>

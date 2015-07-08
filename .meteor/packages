@@ -6,7 +6,7 @@
 
 meteor-platform
 autopublish
-insecure
 kevohagan:ramda
 underscorestring:underscore.string
 twbs:bootstrap
+percolate:synced-cron
